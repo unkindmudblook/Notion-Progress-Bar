@@ -24,47 +24,11 @@
       width: 100%;
       max-width: 860px;
       background: #ffffff;
-      border: none; /* Removed border */
+      border: none;
       border-radius: 10px;
       padding: 8px 12px;
-      box-shadow: none; /* Removed drop shadow */
+      box-shadow: none;
       position: relative;
-    }
-
-    /* Top Action Bar - Compact */
-    .dashboard-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-    }
-
-    .dash-title {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: #7a7a7a;
-    }
-
-    .settings-btn {
-      background: #fbfbfa;
-      border: 1px solid #e0e0e0;
-      cursor: pointer;
-      font-size: 11px;
-      font-weight: 600;
-      color: #7a7a7a;
-      padding: 2px 8px;
-      border-radius: 4px;
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    .settings-btn:hover {
-      background: #f1f1ef;
-      color: #37352f;
     }
 
     /* Collapsible Panel - Compact Grid */
@@ -153,11 +117,26 @@
       text-align: center;
     }
 
-    .ring-title {
+    /* Clickable Header Button replacing the static title */
+    .ring-title-btn {
+      background: transparent;
+      border: none;
       font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.3px;
       margin-bottom: 6px;
+      cursor: pointer;
+      padding: 2px 6px;
+      border-radius: 4px;
+      transition: background 0.2s, opacity 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .ring-title-btn:hover {
+      background: #f1f1ef;
+      opacity: 0.85;
     }
 
     /* Small Ring Outer SVG (80px x 80px) */
@@ -183,7 +162,7 @@
       fill: none;
       stroke-width: 8;
       stroke-linecap: round;
-      stroke-dasharray: 201.06; /* 2 * PI * 32 */
+      stroke-dasharray: 201.06;
       stroke-dashoffset: 201.06;
       transition: stroke-dashoffset 0.8s ease-in-out;
     }
@@ -221,13 +200,13 @@
 
     /* Color Themes */
     .color-sem .ring-fill { stroke: #8C9AA7; }
-    .color-sem .ring-title, .color-sem .sub-val { color: #8C9AA7; }
+    .color-sem .ring-title-btn, .color-sem .sub-val { color: #8C9AA7; }
 
     .color-uk .ring-fill { stroke: #8C9AA7; }
-    .color-uk .ring-title, .color-uk .sub-val { color: #8C9AA7; }
+    .color-uk .ring-title-btn, .color-uk .sub-val { color: #8C9AA7; }
 
     .color-gpb .ring-fill { stroke: #FFDBD4; }
-    .color-gpb .ring-title { color: #d97782; }
+    .color-gpb .ring-title-btn { color: #d97782; }
     .color-gpb .sub-val { color: #b85c67; }
 
     /* Remove Spin Arrows */
@@ -239,15 +218,6 @@
 <body>
 
   <div class="dashboard-card">
-    
-    <!-- Header Toggle -->
-    <div class="dashboard-header">
-      <span class="dash-title">Overview</span>
-      <button class="settings-btn" id="toggleBtn" onclick="toggleSettings()">
-        <span>Edit</span>
-        <span id="arrowIcon">▼</span>
-      </button>
-    </div>
 
     <!-- Collapsible Settings Section -->
     <div class="settings-panel" id="settingsPanel">
@@ -330,7 +300,9 @@
       
       <!-- Ring 1: Semester -->
       <div class="ring-card color-sem">
-        <div class="ring-title">Semester</div>
+        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+          Semester
+        </button>
         <div class="ring-wrapper">
           <svg class="ring-svg" viewBox="0 0 80 80">
             <circle class="ring-bg" cx="40" cy="40" r="32"></circle>
@@ -345,7 +317,9 @@
 
       <!-- Ring 2: UK Invests -->
       <div class="ring-card color-uk">
-        <div class="ring-title">UK Invests</div>
+        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+          UK Invests
+        </button>
         <div class="ring-wrapper">
           <svg class="ring-svg" viewBox="0 0 80 80">
             <circle class="ring-bg" cx="40" cy="40" r="32"></circle>
@@ -361,7 +335,9 @@
 
       <!-- Ring 3: Gamma Phi Beta -->
       <div class="ring-card color-gpb">
-        <div class="ring-title">ΓΦΒ Points</div>
+        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+          ΓΦΒ Points
+        </button>
         <div class="ring-wrapper">
           <svg class="ring-svg" viewBox="0 0 80 80">
             <circle class="ring-bg" cx="40" cy="40" r="32"></circle>
@@ -406,9 +382,7 @@
 
     function toggleSettings() {
       const panel = document.getElementById('settingsPanel');
-      const arrow = document.getElementById('arrowIcon');
-      const isShown = panel.classList.toggle('show');
-      arrow.innerText = isShown ? '▲' : '▼';
+      panel.classList.toggle('show');
     }
 
     function setRingOffset(ringId, percent) {
