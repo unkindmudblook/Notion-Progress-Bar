@@ -22,7 +22,7 @@
 
     .dashboard-card {
       width: 100%;
-      max-width: 860px;
+      max-width: 960px;
       background: #ffffff;
       border: none;
       border-radius: 10px;
@@ -31,12 +31,13 @@
       position: relative;
     }
 
-    /* Collapsible Panel - 3 Aligned Columns */
+    /* Collapsible Panel - Full Width Stacked */
     .settings-panel {
       display: none;
       border-bottom: 1px solid #ededed;
       padding-bottom: 12px;
       margin-bottom: 12px;
+      width: 100%;
     }
 
     .settings-panel.show {
@@ -45,14 +46,13 @@
 
     .settings-grid {
       display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      gap: 12px;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
     }
 
     .section-box {
-      flex: 1;
-      min-width: 130px;
+      width: 100%;
       background: #fafaf9;
       border: 1px solid #f0f0ee;
       border-radius: 6px;
@@ -60,12 +60,31 @@
     }
 
     .section-title {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      margin-bottom: 6px;
-      text-align: center;
+      margin-bottom: 0px;
+      text-align: left;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity 0.2s;
+      padding: 2px 4px;
+    }
+
+    .section-title:hover {
+      opacity: 0.7;
+    }
+
+    .section-content {
+      display: none;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px solid #f0f0ee;
+    }
+
+    .section-content.show {
+      display: block;
     }
 
     .input-row {
@@ -88,7 +107,7 @@
       color: #7a7a7a;
     }
 
-    input[type="date"], input[type="number"] {
+    input[type="date"], input[type="number"], input[type="text"] {
       font-family: inherit;
       border: 1px solid #e0e0e0;
       border-radius: 4px;
@@ -104,7 +123,207 @@
       border-color: #8C9AA7;
     }
 
-    /* Horizontal Row of 3 Rings */
+    /* GPA Custom Academic Planner Styling */
+    .gpa-planner-container {
+      display: block;
+      width: 100%;
+      margin-bottom: 6px;
+    }
+
+    /* Browser-style academic-year tabs */
+    .year-tabs {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      width: 100%;
+      overflow-x: auto;
+      padding: 4px 4px 0;
+      border-bottom: 1px solid #d9d9d6;
+      background: #f5f5f3;
+      border-radius: 5px 5px 0 0;
+    }
+
+    .year-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      flex: 0 0 auto;
+      max-width: 240px;
+      padding: 7px 10px 6px;
+      border: 1px solid #dededb;
+      border-bottom: none;
+      border-radius: 6px 6px 0 0;
+      background: #e9e9e6;
+      color: #686864;
+      font-size: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .year-tab.active {
+      position: relative;
+      margin-bottom: -1px;
+      background: #ffffff;
+      color: #37352f;
+      border-color: #d9d9d6;
+      border-bottom: 1px solid #ffffff;
+    }
+
+    .tab-add-btn {
+      flex: 0 0 auto;
+      align-self: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      margin: 0 2px 3px 3px;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      background: transparent;
+      color: #777772;
+      font-size: 17px;
+      line-height: 1;
+      cursor: pointer;
+    }
+    .tab-add-btn:hover {
+      background: #e9e9e6;
+      border-color: #dededb;
+      color: #37352f;
+    }
+    .semester-add-btn {
+      flex: 0 0 auto;
+      border: 0;
+      border-radius: 3px;
+      background: transparent;
+      color: #8c9aa7;
+      font-size: 15px;
+      line-height: 1;
+      padding: 0 3px;
+      cursor: pointer;
+    }
+    .semester-add-btn:hover {
+      background: #e9e9e6;
+      color: #37352f;
+    }
+
+    .year-tab-label { overflow: hidden; text-overflow: ellipsis; }
+    .year-tab-remove {
+      border: 0;
+      background: transparent;
+      color: #92928e;
+      font-size: 13px;
+      line-height: 1;
+      cursor: pointer;
+      padding: 0;
+    }
+    .year-tab-remove:hover { color: #b44; }
+
+    .year-block {
+      min-width: 0;
+      width: 100%;
+      background: #ffffff;
+      border: 1px solid #d9d9d6;
+      border-top: 0;
+      border-radius: 0 0 5px 5px;
+      padding: 8px;
+    }
+
+    .year-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #555;
+    }
+
+    .year-content { display: block; }
+
+    /* Semesters Side-by-Side */
+    .semesters-row {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      margin-bottom: 4px;
+    }
+
+    .semester-block {
+      flex: 1;
+      min-width: 140px;
+      background: #fafaf9;
+      border-top: 2px solid #8c9aa7;
+      padding: 4px 6px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .semester-title {
+      font-size: 9.5px;
+      font-weight: 700;
+      color: #666;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .class-row {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 3px;
+      align-items: center;
+    }
+
+    .class-name-input {
+      flex: 2;
+    }
+
+    .class-credits-input {
+      flex: 1;
+    }
+
+    .class-grade-input {
+      flex: 1;
+    }
+
+    .mini-btn {
+      background: transparent;
+      border: none;
+      color: #999;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 1px 4px;
+      border-radius: 3px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mini-btn:hover {
+      background: #f1f1ef;
+      color: #d97782;
+    }
+
+    .action-btn {
+      width: 100%;
+      background: #f1f1ef;
+      border: 1px dashed #d0d0cc;
+      border-radius: 4px;
+      padding: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      color: #555;
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s;
+      margin-top: 2px;
+    }
+
+    .action-btn:hover {
+      background: #e8e8e6;
+    }
+
+    /* Horizontal Row of 4 Rings */
     .rings-row {
       display: flex;
       justify-content: space-around;
@@ -114,7 +333,7 @@
 
     .ring-card {
       flex: 1;
-      min-width: 130px;
+      min-width: 115px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -125,7 +344,7 @@
     .ring-title-btn {
       background: transparent;
       border: none;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       letter-spacing: 0.3px;
       margin-bottom: 6px;
@@ -143,7 +362,7 @@
       opacity: 0.85;
     }
 
-    /* Slightly Larger Ring SVG Container (92px x 92px) */
+    /* Ring SVG Container (92px x 92px) */
     .ring-wrapper {
       position: relative;
       width: 92px;
@@ -185,7 +404,7 @@
 
     /* In-Ring Text */
     .percent-val {
-      font-size: 19px;
+      font-size: 18px;
       font-weight: 800;
       color: #37352f;
       line-height: 1;
@@ -200,18 +419,21 @@
 
     /* Subtext Below Ring */
     .status-subtext {
-      font-size: 11.5px;
+      font-size: 11px;
       font-weight: 700;
       color: #555555;
       margin-top: 6px;
     }
 
     /* Color Themes */
-    .color-sem .ring-fill { stroke: #8C9AA7; }
-    .color-sem .ring-title-btn, .color-sem .sub-val { color: #8C9AA7; }
+    .color-sem .ring-fill { stroke: #b9c2c8; }
+    .color-sem .ring-title-btn, .color-sem .sub-val { color: #b9c2c8; }
 
-    .color-uk .ring-fill { stroke: #8C9AA7; }
-    .color-uk .ring-title-btn, .color-uk .sub-val { color: #8C9AA7; }
+    .color-gpa .ring-fill { stroke: #8c9aa7; }
+    .color-gpa .ring-title-btn, .color-gpa .sub-val { color: #8c9aa7; }
+
+    .color-uk .ring-fill { stroke: #656e7e; }
+    .color-uk .ring-title-btn, .color-uk .sub-val { color: #656e7e; }
 
     .color-gpb .ring-fill { stroke: #FFDBD4; }
     .color-gpb .ring-title-btn { color: #d97782; }
@@ -227,73 +449,91 @@
 
   <div class="dashboard-card">
 
-    <!-- Collapsible Settings Section - Directly Aligned Above Rings -->
+    <!-- Collapsible Settings Section - Full Width Stacked Dropdowns -->
     <div class="settings-panel" id="settingsPanel">
       <div class="settings-grid">
-        
-        <!-- Semester Dates Column -->
-        <div class="section-box">
-          <div class="section-title" style="color: #8C9AA7;">Semester Dates</div>
-          <div class="input-group" style="margin-bottom: 4px;">
-            <label>Start Date</label>
-            <input type="date" id="startDate" onchange="updateSemester()">
-          </div>
-          <div class="input-group">
-            <label>End Date</label>
-            <input type="date" id="endDate" onchange="updateSemester()">
-          </div>
-        </div>
 
-        <!-- UK Invests Column -->
-        <div class="section-box">
-          <div class="section-title" style="color: #8C9AA7;">UK Invests ($)</div>
-          <div class="input-row">
-            <div class="input-group">
-              <label>Fin ($75)</label>
-              <input type="number" id="uk-fin" min="0" max="75" placeholder="0" oninput="updateUK()">
-            </div>
-            <div class="input-group">
-              <label>Well ($50)</label>
-              <input type="number" id="uk-well" min="0" max="50" placeholder="0" oninput="updateUK()">
-            </div>
-          </div>
-          <div class="input-row">
-            <div class="input-group">
-              <label>Inv ($50)</label>
-              <input type="number" id="uk-inv" min="0" max="50" placeholder="0" oninput="updateUK()">
-            </div>
-            <div class="input-group">
-              <label>Emp ($75)</label>
-              <input type="number" id="uk-emp" min="0" max="75" placeholder="0" oninput="updateUK()">
+        <!-- 1. Semester Dates Column -->
+        <div class="section-box" id="box-semSection">
+          <div class="section-title" style="color: #b9c2c8;" onclick="toggleSection('semSection')">Semester Dates <span id="arrow-semSection">▾</span></div>
+          <div class="section-content" id="semSection">
+            <div class="input-row">
+              <div class="input-group">
+                <label>Start Date</label>
+                <input type="date" id="startDate" onchange="updateSemester()">
+              </div>
+              <div class="input-group">
+                <label>End Date</label>
+                <input type="date" id="endDate" onchange="updateSemester()">
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- GPB Points Column -->
-        <div class="section-box">
-          <div class="section-title" style="color: #d97782;">ΓΦΒ Points</div>
-          <div class="input-row">
-            <div class="input-group">
-              <label>Mand</label>
-              <input type="number" id="gpb-man" min="0" placeholder="0" oninput="updateGPB()">
-            </div>
-            <div class="input-group">
-              <label>Part</label>
-              <input type="number" id="gpb-part" min="0" placeholder="0" oninput="updateGPB()">
-            </div>
-            <div class="input-group">
-              <label>Inv</label>
-              <input type="number" id="gpb-inv" min="0" placeholder="0" oninput="updateGPB()">
+        <!-- 2. GPA Planner Column -->
+        <div class="section-box" id="box-gpaSection">
+          <div class="section-title" style="color: #8c9aa7;" onclick="toggleSection('gpaSection')">Academic GPA Planner <span id="arrow-gpaSection">▾</span></div>
+          <div class="section-content" id="gpaSection">
+            <div class="gpa-planner-container" id="gpaPlannerContainer">
+              <!-- Dynamically populated year/semester blocks -->
             </div>
           </div>
-          <div class="input-row">
-            <div class="input-group">
-              <label>Net</label>
-              <input type="number" id="gpb-net" min="0" placeholder="0" oninput="updateGPB()">
+        </div>
+
+        <!-- 3. UK Invests Column -->
+        <div class="section-box" id="box-ukSection">
+          <div class="section-title" style="color: #656e7e;" onclick="toggleSection('ukSection')">UK Invests ($) <span id="arrow-ukSection">▾</span></div>
+          <div class="section-content" id="ukSection">
+            <div class="input-row">
+              <div class="input-group">
+                <label>Financial Literacy ($75)</label>
+                <input type="number" id="uk-fin" min="0" max="75" placeholder="0" oninput="updateUK()">
+              </div>
+              <div class="input-group">
+                <label>Wellness ($50)</label>
+                <input type="number" id="uk-well" min="0" max="50" placeholder="0" oninput="updateUK()">
+              </div>
             </div>
-            <div class="input-group">
-              <label>Kind</label>
-              <input type="number" id="gpb-kind" min="0" placeholder="0" oninput="updateGPB()">
+            <div class="input-row">
+              <div class="input-group">
+                <label>Involvement ($50)</label>
+                <input type="number" id="uk-inv" min="0" max="50" placeholder="0" oninput="updateUK()">
+              </div>
+              <div class="input-group">
+                <label>Employability ($75)</label>
+                <input type="number" id="uk-emp" min="0" max="75" placeholder="0" oninput="updateUK()">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. GPB Points Column -->
+        <div class="section-box" id="box-gpbSection">
+          <div class="section-title" style="color: #d97782;" onclick="toggleSection('gpbSection')">ΓΦΒ Points <span id="arrow-gpbSection">▾</span></div>
+          <div class="section-content" id="gpbSection">
+            <div class="input-row">
+              <div class="input-group">
+                <label>Mandatory</label>
+                <input type="number" id="gpb-man" min="0" placeholder="0" oninput="updateGPB()">
+              </div>
+              <div class="input-group">
+                <label>Participation</label>
+                <input type="number" id="gpb-part" min="0" placeholder="0" oninput="updateGPB()">
+              </div>
+              <div class="input-group">
+                <label>Involvement</label>
+                <input type="number" id="gpb-inv" min="0" placeholder="0" oninput="updateGPB()">
+              </div>
+            </div>
+            <div class="input-row">
+              <div class="input-group">
+                <label>Networking</label>
+                <input type="number" id="gpb-net" min="0" placeholder="0" oninput="updateGPB()">
+              </div>
+              <div class="input-group">
+                <label>Kindness</label>
+                <input type="number" id="gpb-kind" min="0" placeholder="0" oninput="updateGPB()">
+              </div>
             </div>
           </div>
         </div>
@@ -301,12 +541,12 @@
       </div>
     </div>
 
-    <!-- 3 Compact Side-by-Side Rings -->
+    <!-- 4 Side-by-Side Rings in Requested Order -->
     <div class="rings-row">
-      
-      <!-- Ring 1: Semester -->
+
+      <!-- Ring 1: Semester Progress -->
       <div class="ring-card color-sem">
-        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+        <button class="ring-title-btn" onclick="openSection('semSection')" title="Click to edit values">
           Semester
         </button>
         <div class="ring-wrapper">
@@ -321,9 +561,27 @@
         <div class="status-subtext" id="semSub">0 days left</div>
       </div>
 
-      <!-- Ring 2: UK Invests -->
+      <!-- Ring 2: GPA -->
+      <div class="ring-card color-gpa">
+        <button class="ring-title-btn" onclick="openSection('gpaSection')" title="Click to edit values">
+          GPA
+        </button>
+        <div class="ring-wrapper">
+          <svg class="ring-svg" viewBox="0 0 92 92">
+            <circle class="ring-bg" cx="46" cy="46" r="38"></circle>
+            <circle class="ring-fill" id="gpaRing" cx="46" cy="46" r="38"></circle>
+          </svg>
+          <div class="ring-center-text">
+            <span class="percent-val" id="gpaPercent">0.00</span>
+            <span class="sub-val" id="gpaScale">/ 4.0</span>
+          </div>
+        </div>
+        <div class="status-subtext" id="gpaSub" style="font-size:9px; line-height:1.25; text-align:center;">Sem: —</div>
+      </div>
+
+      <!-- Ring 3: UK Invests -->
       <div class="ring-card color-uk">
-        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+        <button class="ring-title-btn" onclick="openSection('ukSection')" title="Click to edit values">
           UK Invests
         </button>
         <div class="ring-wrapper">
@@ -339,9 +597,9 @@
         <div class="status-subtext" id="ukSub">$250 left</div>
       </div>
 
-      <!-- Ring 3: Gamma Phi Beta -->
+      <!-- Ring 4: Gamma Phi Beta -->
       <div class="ring-card color-gpb">
-        <button class="ring-title-btn" onclick="toggleSettings()" title="Click to edit values">
+        <button class="ring-title-btn" onclick="openSection('gpbSection')" title="Click to edit values">
           ΓΦΒ Points
         </button>
         <div class="ring-wrapper">
@@ -364,9 +622,29 @@
   <script>
     const CIRCUMFERENCE = 2 * Math.PI * 38; // ~238.76
 
+    let activeYearIndex = 0;
+    let academicData = [
+      {
+        year: "Freshman Year (2026-2027)",
+        isOpen: true,
+        semesters: [
+          { name: "Fall Semester (2026)", classes: [], required: true },
+          { name: "Spring Semester (2027)", classes: [], required: true }
+        ]
+      }
+    ];
+
     window.onload = function() {
       if (localStorage.getItem('semesterStart')) document.getElementById('startDate').value = localStorage.getItem('semesterStart');
       if (localStorage.getItem('semesterEnd')) document.getElementById('endDate').value = localStorage.getItem('semesterEnd');
+
+      const savedAcademic = localStorage.getItem('academic_planner_data');
+      if (savedAcademic) {
+        try { academicData = JSON.parse(savedAcademic); } catch(e) {}
+      }
+      normalizeAcademicData();
+
+      renderAcademicPlanner();
 
       const savedUK = JSON.parse(localStorage.getItem('uk_invests_data') || '{}');
       if (savedUK.fin !== undefined) document.getElementById('uk-fin').value = savedUK.fin;
@@ -382,13 +660,56 @@
       if (savedGPB.kind !== undefined) document.getElementById('gpb-kind').value = savedGPB.kind;
 
       updateSemester();
+      calculateGPA();
       updateUK();
       updateGPB();
     };
 
-    function toggleSettings() {
+    function openSection(sectionId) {
       const panel = document.getElementById('settingsPanel');
-      panel.classList.toggle('show');
+      panel.classList.add('show');
+
+      // Hide all boxes and content sections, update arrows
+      ['semSection', 'gpaSection', 'ukSection', 'gpbSection'].forEach(id => {
+        document.getElementById(id).classList.remove('show');
+        document.getElementById('box-' + id).style.display = 'none';
+        document.getElementById('arrow-' + id).innerText = '▾';
+      });
+
+      // Show the requested box and content
+      document.getElementById('box-' + sectionId).style.display = 'block';
+      document.getElementById(sectionId).classList.add('show');
+      document.getElementById('arrow-' + sectionId).innerText = '▴';
+    }
+
+    function toggleSection(sectionId) {
+      const panel = document.getElementById('settingsPanel');
+      const contentEl = document.getElementById(sectionId);
+      const arrowEl = document.getElementById('arrow-' + sectionId);
+      const isVisible = contentEl.classList.contains('show');
+      const sectionIds = ['semSection', 'gpaSection', 'ukSection', 'gpbSection'];
+
+      if (isVisible) {
+        // Clicking the open section title closes the entire dropdown panel.
+        sectionIds.forEach(id => {
+          document.getElementById(id).classList.remove('show');
+          document.getElementById('box-' + id).style.display = 'none';
+          document.getElementById('arrow-' + id).innerText = '▾';
+        });
+        panel.classList.remove('show');
+        return;
+      }
+
+      // Open only the selected section and hide all the others.
+      sectionIds.forEach(id => {
+        document.getElementById(id).classList.remove('show');
+        document.getElementById('box-' + id).style.display = 'none';
+        document.getElementById('arrow-' + id).innerText = '▾';
+      });
+      document.getElementById('box-' + sectionId).style.display = 'block';
+      contentEl.classList.add('show');
+      arrowEl.innerText = '▴';
+      panel.classList.add('show');
     }
 
     function setRingOffset(ringId, percent) {
@@ -446,6 +767,305 @@
       document.getElementById('semPercent').innerText = Math.round(percentage) + '%';
       document.getElementById('semSub').innerText = `${daysLeft} day${daysLeft === 1 ? '' : 's'} left`;
       setRingOffset('semRing', percentage);
+    }
+
+    // --- GPA Planner Functions ---
+    function academicYearLabel(index) {
+      const names = ['Freshman', 'Sophomore', 'Junior', 'Senior'];
+      const startYear = 2026 + index;
+      const yearName = names[index] || `${index + 1}th`;
+      return `${yearName} Year (${startYear}-${startYear + 1})`;
+    }
+
+    function normalizeAcademicData() {
+      let foundCurrentSemester = false;
+      academicData.forEach((yearObj, yIdx) => {
+        // Keep year naming consistent with the academic timeline.
+        yearObj.year = academicYearLabel(yIdx);
+        if (!Array.isArray(yearObj.semesters)) yearObj.semesters = [];
+        const fallYear = 2026 + yIdx;
+        const springYear = fallYear + 1;
+        yearObj.semesters.forEach((semObj, sIdx) => {
+          if (semObj.isCurrent && !foundCurrentSemester) foundCurrentSemester = true;
+          else if (semObj.isCurrent) semObj.isCurrent = false;
+          const name = String(semObj.name || '').toLowerCase();
+          if (sIdx === 0 && (name.includes('fall') || name === 'semester 1' || !name)) {
+            semObj.name = `Fall Semester (${fallYear})`;
+            semObj.required = true;
+          } else if (sIdx === 1 && (name.includes('spring') || name === 'semester 2' || !name)) {
+            semObj.name = `Spring Semester (${springYear})`;
+            semObj.required = true;
+          } else if (sIdx < 2) {
+            // The first two semester slots are always protected from deletion.
+            semObj.required = true;
+          }
+        });
+        // Ensure every academic year has its required Fall and Spring semesters.
+        if (yearObj.semesters.length === 0) {
+          yearObj.semesters.push(
+            { name: `Fall Semester (${fallYear})`, classes: [], required: true },
+            { name: `Spring Semester (${springYear})`, classes: [], required: true }
+          );
+        } else if (yearObj.semesters.length === 1) {
+          yearObj.semesters.push({ name: `Spring Semester (${springYear})`, classes: [], required: true });
+        }
+      });
+      if (!foundCurrentSemester && academicData.length && academicData[0].semesters.length) {
+        academicData[0].semesters[0].isCurrent = true;
+      }
+      if (activeYearIndex >= academicData.length) activeYearIndex = Math.max(0, academicData.length - 1);
+      localStorage.setItem('academic_planner_data', JSON.stringify(academicData));
+    }
+
+    function renderAcademicPlanner() {
+      const container = document.getElementById('gpaPlannerContainer');
+      container.innerHTML = '';
+      if (!academicData.length) {
+        container.innerHTML = '<div class="year-tabs"></div><div class="year-block">Add an academic year to start tracking classes.</div>';
+        return;
+      }
+      activeYearIndex = Math.min(Math.max(0, activeYearIndex), academicData.length - 1);
+      const tabs = document.createElement('div');
+      tabs.className = 'year-tabs';
+      const yearColors = ['#dbe1e4', '#b9c2c8', '#8c9aa7', '#656e7e', '#2c313f', '#e8e8e5'];
+      academicData.forEach((yearObj, yIdx) => {
+        const tab = document.createElement('button');
+        tab.type = 'button';
+        tab.className = `year-tab${yIdx === activeYearIndex ? ' active' : ''}`;
+        tab.style.backgroundColor = yearColors[yIdx] || yearColors[5];
+        tab.style.borderColor = yearColors[yIdx] || yearColors[5];
+        tab.style.color = yIdx === 3 || yIdx === 4 ? '#ffffff' : '#37352f';
+        tab.onclick = () => selectYear(yIdx);
+        const label = document.createElement('span');
+        label.className = 'year-tab-label';
+        label.textContent = yearObj.year || academicYearLabel(yIdx);
+        tab.appendChild(label);
+        if (academicData.length > 1) {
+          const remove = document.createElement('span');
+          remove.className = 'year-tab-remove';
+          remove.textContent = '×';
+          remove.title = 'Remove academic year';
+          remove.onclick = (event) => { event.stopPropagation(); removeYear(yIdx); };
+          tab.appendChild(remove);
+        }
+        tabs.appendChild(tab);
+      });
+      if (academicData.length < 6) {
+        const addYearTab = document.createElement('button');
+        addYearTab.type = 'button';
+        addYearTab.className = 'tab-add-btn';
+        addYearTab.textContent = '+';
+        addYearTab.title = 'Add academic year';
+        addYearTab.setAttribute('aria-label', 'Add academic year');
+        addYearTab.onclick = addYear;
+        tabs.appendChild(addYearTab);
+      }
+      container.appendChild(tabs);
+      const yearObj = academicData[activeYearIndex];
+      const yIdx = activeYearIndex;
+      {
+        const yearDiv = document.createElement('div');
+        yearDiv.className = 'year-block';
+
+        let semestersHtml = '';
+        yearObj.semesters.forEach((semObj, sIdx) => {
+          let classesHtml = '';
+          semObj.classes.forEach((cls, cIdx) => {
+            classesHtml += `
+              <div class="class-row">
+                <input type="text" class="class-name-input" placeholder="Course" value="${cls.name || ''}" oninput="updateClassField(${yIdx}, ${sIdx}, ${cIdx}, 'name', this.value)">
+                <input type="number" class="class-credits-input" placeholder="Cr" min="0" max="6" step="0.5" value="${cls.credits !== undefined ? cls.credits : ''}" oninput="updateClassField(${yIdx}, ${sIdx}, ${cIdx}, 'credits', this.value)">
+                <input type="number" class="class-grade-input" placeholder="Grade" min="0" max="100" step="0.1" value="${cls.grade !== undefined ? cls.grade : ''}" oninput="updateClassField(${yIdx}, ${sIdx}, ${cIdx}, 'grade', this.value)">
+                <button class="mini-btn" onclick="removeClass(${yIdx}, ${sIdx}, ${cIdx})" title="Remove class">×</button>
+              </div>
+            `;
+          });
+
+          semestersHtml += `
+            <div class="semester-block">
+              <div class="semester-title">
+                <input type="text" style="font-weight:700; font-size:9.5px; border:none; background:transparent; width: 58%; color:#666;" value="${semObj.name}" oninput="updateSemesterName(${yIdx}, ${sIdx}, this.value)" aria-label="Semester name">
+                <button class="mini-btn" style="color:${semObj.isCurrent ? '#4f7865' : '#8c9aa7'}; font-size:8px; white-space:nowrap;" onclick="setCurrentSemester(${yIdx}, ${sIdx})" title="Set as current semester">${semObj.isCurrent ? '✓ Current' : 'Set current'}</button>
+                ${sIdx === 1 ? `<button class="semester-add-btn" onclick="addSemester(${yIdx})" title="Add semester" aria-label="Add semester">+</button>` : ''}
+                ${sIdx < 2 ? '' : `<button class="mini-btn" onclick="removeSemester(${yIdx}, ${sIdx})" title="Delete Semester">×</button>`}
+              </div>
+              ${classesHtml}
+              <button class="action-btn" style="margin-top:3px; font-size:9px; padding:2px;" onclick="addClass(${yIdx}, ${sIdx})">+ Add Class</button>
+            </div>
+          `;
+        });
+
+        yearDiv.innerHTML = `
+          <div class="year-header">
+            <input type="text" style="font-weight:700; font-size:10px; border:none; background:transparent; width: 100%; pointer-events:auto;" value="${yearObj.year}" oninput="updateYearName(${yIdx}, this.value)" aria-label="Academic year name">
+          </div>
+          <div class="year-content show" id="yearContent-${yIdx}">
+            <div class="semesters-row">
+              ${semestersHtml}
+            </div>
+          </div>
+        `;
+        // Repeat the selected year's tab color in the year-name strip, while keeping the planner body white.
+        const yearColor = yearColors[yIdx] || yearColors[5];
+        const yearHeader = yearDiv.querySelector('.year-header');
+        const yearNameInput = yearHeader.querySelector('input');
+        yearHeader.style.backgroundColor = yearColor;
+        yearHeader.style.padding = '6px 8px';
+        yearHeader.style.borderRadius = '4px';
+        yearHeader.style.marginBottom = '6px';
+        yearNameInput.style.color = (yIdx === 3 || yIdx === 4) ? '#ffffff' : '#37352f';
+        yearNameInput.style.borderRadius = '3px';
+        container.appendChild(yearDiv);
+      }
+    }
+
+    function selectYear(yIdx) {
+      activeYearIndex = yIdx;
+      renderAcademicPlanner();
+    }
+
+    function addYear() {
+      if (academicData.length >= 6) return;
+      const yearIdx = academicData.length;
+      const fallYear = 2026 + yearIdx;
+      const springYear = fallYear + 1;
+      academicData.push({
+        year: academicYearLabel(yearIdx),
+        semesters: [
+          { name: `Fall Semester (${fallYear})`, classes: [], required: true },
+          { name: `Spring Semester (${springYear})`, classes: [], required: true }
+        ]
+      });
+      activeYearIndex = academicData.length - 1;
+      saveAndCalculate();
+    }
+
+    function removeYear(yIdx) {
+      if (academicData.length <= 1) {
+        alert('Keep at least one academic year in your GPA planner.');
+        return;
+      }
+      const removedCurrent = academicData[yIdx]?.semesters?.some(sem => sem.isCurrent);
+      academicData.splice(yIdx, 1);
+      if (removedCurrent && academicData.length) academicData[0].semesters[0].isCurrent = true;
+      if (activeYearIndex > yIdx) activeYearIndex--;
+      else if (activeYearIndex === yIdx) activeYearIndex = Math.min(yIdx, academicData.length - 1);
+      normalizeAcademicData();
+      saveAndCalculate();
+    }
+
+    function updateYearName(yIdx, val) {
+      academicData[yIdx].year = val;
+      localStorage.setItem('academic_planner_data', JSON.stringify(academicData));
+    }
+
+    function updateSemesterName(yIdx, sIdx, val) {
+      academicData[yIdx].semesters[sIdx].name = val;
+      localStorage.setItem('academic_planner_data', JSON.stringify(academicData));
+    }
+
+    function setCurrentSemester(yIdx, sIdx) {
+      academicData.forEach(year => year.semesters.forEach(semester => { semester.isCurrent = false; }));
+      if (academicData[yIdx] && academicData[yIdx].semesters[sIdx]) {
+        academicData[yIdx].semesters[sIdx].isCurrent = true;
+      }
+      activeYearIndex = yIdx;
+      saveAndCalculate();
+    }
+
+    function addSemester(yIdx) {
+      const semCount = academicData[yIdx].semesters.length;
+      let semName = `Semester ${semCount + 1}`;
+      if (semCount === 2) {
+        semName = "Summer";
+      }
+      academicData[yIdx].semesters.push({ name: semName, classes: [] });
+      saveAndCalculate();
+    }
+
+    function removeSemester(yIdx, sIdx) {
+      if (sIdx < 2 || academicData[yIdx].semesters[sIdx]?.required) {
+        alert("Fall and Spring semesters are required and cannot be deleted.");
+        return;
+      }
+      academicData[yIdx].semesters.splice(sIdx, 1);
+      saveAndCalculate();
+    }
+
+    function addClass(yIdx, sIdx) {
+      academicData[yIdx].semesters[sIdx].classes.push({ name: '', credits: 3, grade: '' });
+      saveAndCalculate();
+    }
+
+    function removeClass(yIdx, sIdx, cIdx) {
+      academicData[yIdx].semesters[sIdx].classes.splice(cIdx, 1);
+      saveAndCalculate();
+    }
+
+    function updateClassField(yIdx, sIdx, cIdx, field, val) {
+      academicData[yIdx].semesters[sIdx].classes[cIdx][field] = (field === 'credits' || field === 'grade') ? parseFloat(val) : val;
+      localStorage.setItem('academic_planner_data', JSON.stringify(academicData));
+      calculateGPA();
+    }
+
+    function saveAndCalculate() {
+      localStorage.setItem('academic_planner_data', JSON.stringify(academicData));
+      renderAcademicPlanner();
+      calculateGPA();
+    }
+
+    function gradeToPoints(grade) {
+      if (isNaN(grade)) return 0;
+      if (grade >= 93) return 4.0;
+      if (grade >= 90) return 3.7;
+      if (grade >= 87) return 3.3;
+      if (grade >= 83) return 3.0;
+      if (grade >= 80) return 2.7;
+      if (grade >= 77) return 2.3;
+      if (grade >= 73) return 2.0;
+      if (grade >= 70) return 1.7;
+      if (grade >= 67) return 1.3;
+      if (grade >= 63) return 1.0;
+      if (grade >= 60) return 0.7;
+      return 0.0;
+    }
+
+    function calculateGPA() {
+      let totalQualityPoints = 0;
+      let totalGPAHours = 0;
+
+      let semQualityPoints = 0;
+      let semGPAHours = 0;
+
+      academicData.forEach(y => {
+        y.semesters.forEach(sem => {
+          const isCurrentSem = !!sem.isCurrent;
+        sem.classes.forEach(cls => {
+          const credits = parseFloat(cls.credits);
+          const gradeVal = parseFloat(cls.grade);
+          if (!isNaN(credits) && credits > 0 && !isNaN(gradeVal)) {
+            const points = gradeToPoints(gradeVal);
+            const qp = credits * points;
+            totalQualityPoints += qp;
+            totalGPAHours += credits;
+
+            if (isCurrentSem) {
+              semQualityPoints += qp;
+              semGPAHours += credits;
+            }
+          }
+        });
+        });
+      });
+
+      const cumulativeGPA = totalGPAHours > 0 ? (totalQualityPoints / totalGPAHours) : 0.00;
+      const semesterGPA = semGPAHours > 0 ? (semQualityPoints / semGPAHours) : 0.00;
+
+      document.getElementById('gpaPercent').innerText = cumulativeGPA.toFixed(2);
+      document.getElementById('gpaSub').innerText = 'Sem: ' + (semGPAHours > 0 ? semesterGPA.toFixed(2) : '—');
+
+      const ringPercent = Math.min(100, Math.max(0, (cumulativeGPA / 4.0) * 100));
+      setRingOffset('gpaRing', ringPercent);
     }
 
     function parseNum(id, max) {
